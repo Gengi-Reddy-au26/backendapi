@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+//const path = require ("path")
+import path from "path";
+import {fileURLToPath} from 'url';
 
 import tourRoute from "./routes/tours.js";
 import userRoute from "./routes/users.js";
@@ -42,6 +45,30 @@ app.use("/api/v1/tours", tourRoute);
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/review", reviewRoute);
 app.use("/api/v1/booking", bookingRoute);
+
+
+//
+
+// app.use(express.static(path.join(__dirname, './client/build')));
+
+// app.get('*', function(req, res ){
+//   res.SendFile(path.join(__dirname, './client/build/index.html'));
+// });
+
+
+
+const __filename = fileURLToPath(import.meta.url);
+
+// 👇️ "/home/john/Desktop/javascript"
+const __dirname = path.dirname(__filename);
+console.log('./client/build', __dirname);
+
+// 👇️ "/home/borislav/Desktop/javascript/dist/index.html"
+console.log(path.join(__dirname, './client/build', 'index.html'));
+
+
+
+
 
 app.listen(port, () => {
   connect();
